@@ -10,7 +10,7 @@ attr_reader :card_number, :valid
     card_number.scan(/\d/).map {|digit| digit.to_i}
   end
 
-  def doubler_visa_mc
+  def doubler_even_digits
     numbers = splitter
     numbers.map.with_index do |n, i|
       if i.even?
@@ -21,7 +21,7 @@ attr_reader :card_number, :valid
     end
   end
 
-  def doubler_amex
+  def doubler_odd_digits
     numbers = splitter
     numbers.map.with_index do |n, i|
       if i.odd?
@@ -33,10 +33,10 @@ attr_reader :card_number, :valid
   end
 
   def remove_double_digits
-    if card_number.size == 15
-      numbers = doubler_amex
+    if card_number.size.odd?
+      numbers = doubler_odd_digits
     else
-      numbers = doubler_visa_mc
+      numbers = doubler_even_digits
     end
 
     numbers.map do |n|

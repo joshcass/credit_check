@@ -12,7 +12,12 @@ class CreditCheckTest < Minitest::Test
 
   def test_it_can_multiply_every_other_number_by_two_for_visa_mastercard
     result = CreditCheck.new("4929735477250543")
-    assert_equal [8, 9, 4, 9, 14, 3, 10, 4, 14, 7, 4, 5, 0, 5, 8, 3], result.doubler_visa_mc
+    assert_equal [8, 9, 4, 9, 14, 3, 10, 4, 14, 7, 4, 5, 0, 5, 8, 3], result.doubler_even_digits
+  end
+
+  def test_it_can_multiply_every_other_number_by_two_for_amex
+    result = CreditCheck.new("342804633855673")
+    assert_equal [3, 8, 2, 16, 0, 8, 6, 6, 3, 16, 5, 10, 6, 14, 3], result.doubler_odd_digits
   end
 
   def test_it_can_remove_double_digits_by_subtracting_nine
